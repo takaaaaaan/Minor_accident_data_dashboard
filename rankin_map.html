@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事故データダッシュボード</title>
+    <link rel="stylesheet" href="css/style-rankin-map.css">
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASTtjOm6uQMHMmWgau0aDqZOHnsoAJLpg&callback=initialize"
+        async defer></script>
+
+        <!-- AIzaSyASTtjOm6uQMHMmWgau0aDqZOHnsoAJLpg -->
+</head>
+
+<body onload="initialize()">
+    <div id="container">
+        <div id="sidebar">
+            <div class="user-select">
+                <div class="icon">
+                    <img src="../0921_chart_dshi/img/higeoji.svg" alt="User Icon"> <!-- アイコンのURLを指定 -->
+                </div>
+                <div class="info">
+                    <div class="name">Hue Brew</div> <!-- 人の名前 -->
+                    <div class="role">Designer</div> <!-- 役割 -->
+                </div>
+            </div>
+            <div class="sidebar-container">
+                <div class="sidebar-item" onclick="location.href='index.html'">
+                    <img src="img/flask-outline.svg" alt="home-icon">
+                    ホーム
+                </div>
+                <div class="sidebar-item">
+                    <img src="img/flask-outline.svg" alt="home-icon">
+                    地域別事故
+                </div>
+                <div class="sidebar-item">
+                    <img src="img/flask-outline.svg" alt="home-icon">
+                    予測
+                </div>
+                <div class="sidebar-item" onclick="location.href='rankin.html'">
+                    <img src="img/flask-outline.svg" alt="home-icon">
+                    map
+                </div>
+            </div>
+        </div>
+
+        <div id="content">
+            <div id="header"></div>
+            <div id="main" style="min-height: 700px;">
+                <div id="googleMap" style="width: 100%; height: 700px;"></div>
+            </div>
+            <div id="footer"></div>
+        </div>
+    </div>
+    <script>
+        // スクロールを無効にする
+        document.body.style.overflow = 'hidden';
+
+        // スクロールを有効にする（必要な場合）
+        //document.body.style.overflow = 'auto';
+
+        function initialize() {
+            const mapProp = {
+                center: new google.maps.LatLng(36.1750, 128.1119), // 初期位置を영동군に変更
+                zoom: 6.75,
+                zoomControl: false,  // ズームコントロールを非表示
+                mapTypeControl: false, // 地図タイプコントロールを非表示（例: 衛星画像とか）
+                scaleControl: false, // スケールコントロールを非表示
+                streetViewControl: false, // ストリートビューコントロールを非表示
+                rotateControl: false, // 回転コントロールを非表示
+                fullscreenControl: false, // 全画面コントロールを非表示
+                styles: [
+                    {
+                        "featureType": "all",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "weight": "2.00"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "color": "#9c9c9c"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "all",
+                        "elementType": "labels.text",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#f2f2f2"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#ffffff"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.man_made",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#ffffff"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "saturation": -100
+                            },
+                            {
+                                "lightness": 45
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#eeeeee"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#7b7b7b"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            {
+                                "color": "#ffffff"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "labels.icon",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#46bcec"
+                            },
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#c8d7d4"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#070707"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            {
+                                "color": "#ffffff"
+                            }
+                        ]
+                    }
+                ]
+            };
+            const map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+            // 半径を調整する関数
+            const calculateRadius = (value) => {
+                return Math.sqrt(value) * 1000;  // 例: valueの平方根に1000を掛ける
+            };
+
+            const geoCoordMap = {
+                "경기": [127.0095, 37.2749],  // Gyeonggi-do
+                "서울": [126.9780, 37.5665],  // Seoul
+                "경남": [128.6919, 35.2383],  // Gyeongsangnam-do
+                "부산": [129.0756, 35.1796],  // Busan
+                "전북": [127.1080, 35.8203],  // Jeollabuk-do
+                "경북": [128.5056, 36.5750],  // Gyeongsangbuk-do
+                "충남": [126.6728, 36.6584],  // Chungcheongnam-do
+                "대구": [128.6014, 35.8714],  // Daegu
+                "강원": [127.7298, 37.8228],  // Gangwon-do
+                "인천": [126.7052, 37.4563],  // Incheon
+                "대전": [127.3845, 36.3504],  // Daejeon
+                "울산": [129.3114, 35.5384],  // Ulsan
+                "전남": [126.4620, 34.8161],  // Jeollanam-do
+                "충북": [127.4913, 36.6360],  // Chungcheongbuk-do
+                "제주": [126.5312, 33.4996],  // Jeju
+                "광주": [126.8526, 35.1595],  // Gwangju
+                "세종": [127.2892, 36.4801],  // Sejong
+            };
+
+
+            const data = [
+                { name: '경기', value: 8368 },
+                { name: '서울', value: 5134 },
+                { name: '경남', value: 3224 },
+                { name: '부산', value: 3109 },
+                { name: '전북', value: 2653 },
+                { name: '경북', value: 2310 },
+                { name: '충남', value: 2237 },
+                { name: '대구', value: 2231 },
+                { name: '강원', value: 2077 },
+                { name: '인천', value: 1667 },
+                { name: '대전', value: 1528 },
+                { name: '울산', value: 1492 },
+                { name: '전남', value: 1420 },
+                { name: '충북', value: 1359 },
+                { name: '제주', value: 1255 },
+                { name: '광주', value: 1195 },
+                { name: '세종', value: 681 },
+            ];
+
+            // テキストオーバーレイを追加する関数（一度だけ定義）
+            const addLabel = (map, position, text) => {
+                const div = document.createElement('div');
+                div.style.position = 'absolute';
+                div.innerHTML = text;
+
+                // スタイルを追加
+                div.style.fontSize = '50px'; // 文字サイズを50pxに設定
+                div.style.fontWeight = 'bold'; // 文字を太くする
+
+                const overlay = new google.maps.OverlayView();
+                overlay.onAdd = () => {
+                    const layer = document.createElement('div');
+                    layer.style.position = 'absolute';
+                    layer.appendChild(div);
+                    overlay.getPanes().overlayLayer.appendChild(layer);
+                };
+                overlay.draw = () => {
+                    const projection = overlay.getProjection();
+                    const point = projection.fromLatLngToDivPixel(position);
+                    div.style.left = point.x + 'px';
+                    div.style.top = point.y + 'px';
+                };
+                overlay.setMap(map);
+            };
+
+            for (let i = 0; i < data.length; i++) {
+                const dataItem = data[i];
+                const coord = geoCoordMap[dataItem.name];
+                if (coord) {
+                    const center = new google.maps.LatLng(coord[1], coord[0]);
+                    new google.maps.Circle({
+                        strokeColor: "#FF0000",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: "#FF0000",
+                        fillOpacity: 0.35,
+                        map: map,
+                        center: center,
+                        radius: calculateRadius(dataItem.value), // 半径を調整
+                    });
+                    // テキストオーバーレイを追加する新しい関数
+                    const addLabel = (map, position, text) => {
+                        const div = document.createElement('div');
+                        div.style.position = 'absolute';
+                        div.innerHTML = text;
+
+                        const overlay = new google.maps.OverlayView();
+                        overlay.onAdd = () => {
+                            const layer = document.createElement('div');
+                            layer.style.position = 'absolute';
+                            layer.appendChild(div);
+                            overlay.getPanes().overlayLayer.appendChild(layer);
+                        };
+                        overlay.draw = () => {
+                            const projection = overlay.getProjection();
+                            const point = projection.fromLatLngToDivPixel(position);
+                            div.style.left = point.x + 'px';
+                            div.style.top = point.y + 'px';
+                        };
+                        overlay.setMap(map);
+                    };
+
+                    // ラベルを追加
+                    addLabel(map, center, dataItem.name);
+
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

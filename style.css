@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+body {
+  background-color: aquamarine;
+}
+.slick-prev {
+  background-color: #ff0000; /* 背景色 */
+  color: #ffffff; /* アイコンの色 */
+  font-size: 24px; /* アイコンのサイズ */
+  /* その他のスタイル */
+}
+
+.slick-next {
+  background-color: #00ff00; /* 背景色 */
+  color: #ffffff; /* アイコンの色 */
+  font-size: 24px; /* アイコンのサイズ */
+  /* その他のスタイル */
+}

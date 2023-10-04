@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事故データダッシュボード</title>
+    <link rel="stylesheet" href="css/style-baise-home.css">
+    <script>
+        // スクロールを無効にする
+        document.body.style.overflow = 'hidden';
+
+        // スクロールを有効にする（必要な場合）
+        //document.body.style.overflow = 'auto';
+
+    </script>
+</head>
+
+<body onload="initialize()">
+    <div id="sidebar">
+        <div class="user-select">
+            <div class="icon">
+                <img src="../0921_chart_dshi/img/higeoji.svg" alt="User Icon"> <!-- アイコンのURLを指定 -->
+            </div>
+            <div class="info">
+                <div class="name">Hue Brew</div> <!-- 人の名前 -->
+                <div class="role">Designer</div> <!-- 役割 -->
+            </div>
+        </div>
+        <div class="sidebar-container">
+            <div class="sidebar-item" onclick="location.href='index.html'">
+                <img src="img/flask-outline.svg" alt="home-icon">
+                ホーム
+            </div>
+            <div class="sidebar-item">
+                <img src="img/flask-outline.svg" alt="home-icon">
+                地域別事故
+            </div>
+            <div class="sidebar-item">
+                <img src="img/flask-outline.svg" alt="home-icon">
+                予測
+            </div>
+            <div class="sidebar-item" onclick="location.href='rankin.html'">
+                <img src="img/flask-outline.svg" alt="home-icon">
+                map
+            </div>
+        </div>
+    </div>
+
+    <div id="content">
+        <div id="header"></div>
+        <div id="main"></div>
+        <div id="footer"></div>
+    </div>
+    <script>
+        // ここでJavaScriptを使って動的な機能を追加
+    </script>
+</body>
+
+</html>

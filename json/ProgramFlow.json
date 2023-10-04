@@ -1,0 +1,61 @@
+{
+    "ProgramFlow": [
+        {
+            "Step": 1,
+            "Action": "ライブラリインポート",
+            "Detail": "pandasとjsonライブラリをインポートする"
+        },
+        {
+            "Step": 2,
+            "Action": "CSVファイル読み込み",
+            "Detail": "指定のパスからCSVファイルを読み込み、DataFrameとして保存する"
+        },
+        {
+            "Step": 3,
+            "Action": "結果保存用辞書初期化",
+            "Detail": "解析結果を保存するための空の辞書（result_dict）を初期化する"
+        },
+        {
+            "Step": 4,
+            "Action": "解析対象カラムの選定",
+            "Detail": "'구분'と'학교명'を除外したカラム名のリストを作成する"
+        },
+        {
+            "Step": 5,
+            "Action": "カラムごとの解析",
+            "Detail": "各カラムに対して以下の処理を行う",
+            "SubSteps": [
+                {
+                    "SubStep": "a",
+                    "SubAction": "カラムデータの抽出",
+                    "SubDetail": "DataFrameからカラムのデータを抽出する"
+                },
+                {
+                    "SubStep": "b",
+                    "SubAction": "特殊ケース処理",
+                    "SubDetail": "'사고발생시간'の場合、分を除外し、時間だけを取得する"
+                },
+                {
+                    "SubStep": "c",
+                    "SubAction": "出現回数カウント",
+                    "SubDetail": "カラムデータの値の出現回数をカウントする"
+                },
+                {
+                    "SubStep": "d",
+                    "SubAction": "ランキング付け",
+                    "SubDetail": "出現回数に基づいてランキングを付ける"
+                },
+                {
+                    "SubStep": "e",
+                    "SubAction": "結果を辞書に保存",
+                    "SubDetail": "解析結果をresult_dictに保存する"
+                }
+            ]
+        },
+        {
+            "Step": 6,
+            "Action": "JSONファイルに保存",
+            "Detail": "result_dictをJSONファイルとして保存する"
+        }
+    ]
+}

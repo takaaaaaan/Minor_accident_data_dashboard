@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事故データダッシュボード</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="sidebar">
+        <div class="sidebar-item">ホーム</div>
+        <div class="sidebar-item">地域別事故</div>
+        <div class="sidebar-item">曜日・時間帯別事故</div>
+        <div class="sidebar-item">事故の種類</div>
+        <div class="sidebar-item">性別別事故件数</div>
+        <div class="sidebar-item">予測</div>
+        <div class="sidebar-item" onclick="location.href='rankin.html'">map</div>
+    </div>
+
+    <div id="content">
+        <div id="header">
+            <!-- <h1>事故データダッシュボード</h1> -->
+            事故データダッシュボード
+        </div>
+        <div id="settings">
+            <label for="year-select">年度：</label>
+            <select id="year-select">
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+            </select>
+
+            <label for="time-frame-select">月別/四半期別：</label>
+            <select id="time-frame-select">
+                <option value="monthly">月別</option>
+                <option value="quarterly">四半期別</option>
+            </select>
+            <label for="time-frame-select">性別：</label>
+            <select id="time-frame-select">
+                <option value="all">選択してください</option>
+                <option value="monthly">男</option>
+                <option value="quarterly">女</option>
+            </select>
+            <label for="time-frame-select">事故の種類：</label>
+            <select id="time-frame-select">
+                <option value="all">選択してください</option>
+                <option value="monthly">물리적힘 노출</option>
+                <option value="quarterly">낙상-넘어짐</option>
+                <option value="quarterly">낙상-미끄러짐</option>
+                <option value="quarterly">사람과의 충돌</option>
+                <option value="quarterly">낙상-떨어짐</option>
+                <option value="quarterly">기타</option>
+            </select>
+        </div>
+        <!-- ここにチャートやテーブルを表示 -->
+    </div>
+
+    <script>
+        // ここでJavaScriptを使って動的な機能を追加
+    </script>
+</body>
+</html>

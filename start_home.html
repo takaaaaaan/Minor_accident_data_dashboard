@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事故データダッシュボード</title>
+    <link rel="stylesheet" href="./slick/slick.css">
+    <link rel="stylesheet" href="./slick/slick-thmw.css">
+    <link rel="stylesheet" href="css/style-start-home.css">
+    <script>
+        // スクロールを無効にする
+        //document.body.style.overflow = 'hidden';
+
+        // スクロールを有効にする（必要な場合）
+        //document.body.style.overflow = 'auto';
+
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="sidebar-ba">
+            <div class="user-select">
+                <div class="icon">
+                    <img src="img/higeoji.svg" alt="User Icon"> <!-- アイコンのURLを指定 -->
+                </div>
+                <div class="info">
+                    <div class="name">Hue Brew</div> <!-- 人の名前 -->
+                    <div class="role">Designer</div> <!-- 役割 -->
+                </div>
+            </div>
+            <div class="sidebar-container">
+                <div class="sidebar-item" onclick="location.href='start_home.html'">
+                    <img src="img/flask-outline.svg" alt="home-icon">
+                    ホーム
+                </div>
+                <div class="sidebar-item">
+                    <img src="img/flask-outline.svg" alt="home-icon">
+                    地域別事故
+                </div>
+                <div class="sidebar-item">
+                    <img src="img/flask-outline.svg" alt="home-icon">
+                    予測
+                </div>
+                <div class="sidebar-item" onclick="location.href='rankin.html'">
+                    <img src="img/flask-outline.svg" alt="home-icon">
+                    map
+                </div>
+            </div>
+        </div>
+
+        <div id="content">
+            <div id="header"></div>
+            <div id="main">
+                <div class="my-class">
+                    <div class="white-block">01</div>
+                    <div class="white-block">02</div>
+                    <div class="white-block">03</div>
+                    <div class="white-block">04</div>
+                </div>
+
+                <div id="settings">
+                    <label for="year-select">年度：</label>
+                    <select id="year-select">
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                    </select>
+
+                    <label for="time-frame-select">月別/四半期別：</label>
+                    <select id="time-frame-select">
+                        <option value="monthly">月別</option>
+                        <option value="quarterly">四半期別</option>
+                    </select>
+                    <label for="time-frame-select">性別：</label>
+                    <select id="time-frame-select">
+                        <option value="all">選択してください</option>
+                        <option value="monthly">男</option>
+                        <option value="quarterly">女</option>
+                    </select>
+                    <label for="time-frame-select">事故の種類：</label>
+                    <select id="time-frame-select">
+                        <option value="all">選択してください</option>
+                        <option value="monthly">물리적힘 노출</option>
+                        <option value="quarterly">낙상-넘어짐</option>
+                        <option value="quarterly">낙상-미끄러짐</option>
+                        <option value="quarterly">사람과의 충돌</option>
+                        <option value="quarterly">낙상-떨어짐</option>
+                        <option value="quarterly">기타</option>
+                    </select>
+                </div>
+            </div>
+            <div id="footer"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>
